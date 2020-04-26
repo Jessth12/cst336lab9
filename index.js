@@ -8,12 +8,17 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'yessica',
-    password: 'password336',
-    database: 'quotes_db'
-});
+
+if(process.env.JAWSDB_URL){
+    var connection = mysql.createConnection(process.env.JAWSDB_URL)
+}else {
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'yessica',
+        password: 'password336',
+        database: 'quotes_db'
+    });
+}
 connection.connect();
 
 /* The handler for the DEFAULT route */
