@@ -9,10 +9,16 @@ app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
 
+let localhost = false;
 let connection = undefined;
 
-if(process.env.JAWSDB_URL){
-    connection = mysql.createConnection(process.env.JAWSDB_URL)
+if(!localhost){
+    connection = mysql.createConnection({
+        host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'lwz6xabhk3w3l77r',
+        password: 'eewngfvmixwph5lv',
+        database: 'g51zn2ih4ftm35s6'
+    });
     connection.connect();
 } else {
     connection = mysql.createConnection({
