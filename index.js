@@ -32,11 +32,11 @@ if(!localhost){
 
 
 /* The handler for the DEFAULT route */
-app.get('/', function(req, res){
+app.get('/search', function(req, res){
     res.render('home');
 });
 
-app.get('/search', function(req, res) {
+app.get('/', function(req, res) {
     res.render('quote-home');
 });
 
