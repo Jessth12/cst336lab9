@@ -37,7 +37,20 @@ app.get('/search', function(req, res){
 });
 
 app.get('/', function(req, res) {
-    res.render('quote-home');
+
+    let stmt = `SELECT DISTINCT category FROM l9_quotes;`;
+    
+    connection.query(stmt, function(error, found) {
+        if(error) throw error;
+        categories = [];
+        for (i in found) {
+            categories.push(found[i].category);
+        }
+
+        res.render('quote-home', {
+            "categories": categories
+        });
+    });
 });
 
 app.get('/quotes', function(req, res) {
@@ -97,6 +110,40 @@ app.get('/quotes', function(req, res) {
             res.render('quote-display', {
                 "quotes": found,
                 "query": "Search by Keyword " + req.query.query
+            });
+        });
+    }
+    
+    if (req.query.type == "cat") {
+        let stmt = `SELECT * FROM l9_author JOIN l9_quotes 
+        ON l9_author.authorId = l9_quotes.authorId
+        WHERE category='${req.query.cat}';`
+
+        console.log(stmt);
+
+        connection.query(stmt, function(error, found) {
+            if(error) throw error;
+            console.log(found);
+            res.render('quote-display', {
+                "quotes": found,
+                "query": "Search by Category " + req.query.cat
+            });
+        });
+    }
+
+    if (req.query.type == "sex") {
+        let stmt = `SELECT * FROM l9_author JOIN l9_quotes 
+        ON l9_author.authorId = l9_quotes.authorId
+        WHERE sex='${req.query.sex}';`
+
+        console.log(stmt);
+
+        connection.query(stmt, function(error, found) {
+            if(error) throw error;
+            console.log(found);
+            res.render('quote-display', {
+                "quotes": found,
+                "query": "Search by Sex " + req.query.sex
             });
         });
     }

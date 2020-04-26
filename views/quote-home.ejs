@@ -4,8 +4,7 @@
 	<div class='jumbotron'>
 		<h1> POPULAR QUOTES </h1>
 		<form action='/quotes' method='GET'>
-			<div class='form-group row'>
-
+			<div id="form-content" class='form-group row'>
 				<label for='query' class='col-sm-4 col-form-label'>Search Query</label>
 				<div class='col-sm-4'>
 					<input type='text' class='form-control' id='query' name='query' placeholder='...' required>
@@ -22,7 +21,7 @@
   					<input type="radio" id="cat" name="type" value="cat" required>
                     <label for="female">Category</label><br>
                     <input type="radio" id="sex" name="type" value="sex" required>
-  					<label for="female">Sex</label><br>
+  					<label for="sex">Sex</label><br>
 				</div>
             </div>
             
@@ -40,9 +39,49 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
+
+        let categories =  <%- JSON.stringify(categories) %>;
+        let categories_html = "";
+
+        for (cat in categories) {
+            categories_html += `
+                <input type="radio" name="cat" value="${categories[cat]}" required>
+                <label for="${categories[cat]}">${categories[cat]}</label><br>
+                      `
+                      
+        }
+
         $('input[type=radio][name=type]').change(function() {
+
+            
+
             if (this.value == 'cat') {
-                alert("alert");
+                let cat_box = `<label for='type' class='col-sm-4 col-form-label'>Type</label>
+				<div class='col-sm-4'>` + categories_html + `</div></div>`;
+
+                $("#form-content").html(cat_box);
+            }
+
+            if (this.value == 'sex') {
+                let sex_box = `
+                <label for='type' class='col-sm-4 col-form-label'>Type</label>
+                    <div class='col-sm-4'>
+                        <input type="radio" name="sex" value="F" required>
+                        <label for="F">Female</label><br>
+                        <input type="radio" name="sex" value="M" required>
+                        <label for="M">Male</label><br>
+                `;
+                $("#form-content").html(sex_box);
+            }
+
+            if (this.value == "key" || this.value == "name") {
+                let input_box = `
+                    <label for='query' class='col-sm-4 col-form-label'>Search Query</label>
+                    <div class='col-sm-4'>
+                        <input type='text' class='form-control' id='query' name='query' placeholder='...' required>
+                    </div>
+                `;
+                $("#form-content").html(input_box);
             }
         });
     });
