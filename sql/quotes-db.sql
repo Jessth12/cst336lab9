@@ -11,21 +11,21 @@ DROP TABLE IF EXISTS 'l9_author';
 CREATE TABLE 'l9_author' (
   'authorId' mediumint(9) NOT NULL,
   'firstName' varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `lastName` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `dob` date NOT NULL,
-  `dod` date DEFAULT NULL,
-  `sex` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `profession` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `portrait` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `biography` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+  'lastName' varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  'dob' date NOT NULL,
+  'dod' date DEFAULT NULL,
+  'sex' char(1) COLLATE utf8_unicode_ci NOT NULL,
+  'profession' varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  'country' varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  'portrait' varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  'biography' varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `l9_author`
 --
 
-INSERT INTO `l9_author` (`authorId`, `firstName`, `lastName`, `dob`, `dod`, `sex`, `profession`, `country`, `portrait`, `biography`) VALUES
+INSERT INTO 'l9_author' (`authorId`, `firstName`, `lastName`, `dob`, `dod`, `sex`, `profession`, `country`, `portrait`, `biography`) VALUES
 (1, 'Albert', 'Einstein', '1879-03-14', '1955-04-18', 'M', 'Theoretical physicist', 'Germany', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/900px-Albert_Einstein_Head.jpg', 'Albert Einstein was born at Ulm, in Württemberg, Germany, on March 14, 1879. In 1901, after gaining his diploma, he acquired Swiss citizenship and, as he was unable to find a teaching post, he accepted a position as technical assistant in the Swiss Patent Office. In 1905 he obtained his doctor’s degree. Einstein always appeared to have a clear view of the problems of physics and the determination to solve them. He had a strategy of his own and was able to visualize the main stages on the way to '),
 (2, 'Agatha', 'Christie', '1890-09-15', '1976-01-12', 'F', 'Writer', 'United Kingdom', 'http://www.gstatic.com/tv/thumb/persons/323/323_v9_ba.jpg', 'Dame Agatha Mary Clarissa Christie, Lady Mallowan, DBE was an English writer. She is known for her 66 detective novels and 14 short story collections, particularly those revolving around her fictional detectives Hercule Poirot and Miss Marple.'),
 (3, 'Marie', 'Curie', '1867-11-07', '1934-07-04', 'F', 'Physicist', 'Poland', 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg', 'Marie Curie was a French-Polish physicist and chemist famous for her work researching radioactivity.'),
@@ -92,7 +92,7 @@ INSERT INTO 'l9_quotes' (`quoteId`, `quote`, `authorId`, `category`, `likes`) VA
 --
 -- Indexes for table `l9_author`
 --
-ALTER TABLE `l9_author`
+ALTER TABLE 'l9_author'
   ADD PRIMARY KEY (`authorId`);
 
 --

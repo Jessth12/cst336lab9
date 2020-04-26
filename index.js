@@ -9,11 +9,13 @@ app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
 
+let connection = undefined;
+
 if(process.env.JAWSDB_URL){
-    var connection = mysql.createConnection(process.env.JAWSDB_URL)
+    connection = mysql.createConnection(process.env.JAWSDB_URL)
     connection.connect();
-}else {
-    const connection = mysql.createConnection({
+} else {
+    connection = mysql.createConnection({
         host: 'localhost',
         user: 'yessica',
         password: 'password336',
