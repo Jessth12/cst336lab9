@@ -1,4 +1,5 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+USE g51zn2ih4ftm35s6;
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -7,10 +8,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `l9_author`
 --
 
-DROP TABLE IF EXISTS 'l9_author';
-CREATE TABLE 'l9_author' (
-  'authorId' mediumint(9) NOT NULL,
-  'firstName' varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS l9_author;
+
+CREATE TABLE `l9_author` (
+  `authorId` mediumint(9) NOT NULL,
+  `firstName` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `lastName` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `dob` date NOT NULL,
   `dod` date DEFAULT NULL,
@@ -40,9 +42,9 @@ INSERT INTO `l9_author` (`authorId`, `firstName`, `lastName`, `dob`, `dod`, `sex
 -- Table structure for table `l9_quotes`
 --
 
-DROP TABLE IF EXISTS 'l9_quotes';
+DROP TABLE IF EXISTS `l9_quotes`;
 
-CREATE TABLE 'l9_quotes' (
+CREATE TABLE `l9_quotes` (
   `quoteId` mediumint(9) NOT NULL,
   `quote` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `authorId` smallint(6) NULL,
@@ -54,7 +56,7 @@ CREATE TABLE 'l9_quotes' (
 -- Dumping data for table `l9_quotes`
 --
 
-INSERT INTO 'l9_quotes' (`quoteId`, `quote`, `authorId`, `category`, `likes`) VALUES
+INSERT INTO `l9_quotes` (`quoteId`, `quote`, `authorId`, `category`, `likes`) VALUES
 (1, 'Try not to become a man of success, but rather try to become a man of value.', 1, 'Inspirational', 1),
 (2, 'Life is like riding a bicycle. To keep your balance you must keep moving.', 1, 'Motivational', 20),
 (3, 'You cannot hope to build a better world without improving the individuals. To that end, each of us must work for his own improvement and, at the same time, share a general responsibility for all human', 3, 'Life', 100),
@@ -98,7 +100,7 @@ ALTER TABLE `l9_author`
 --
 -- Indexes for table `l9_quotes`
 --
-ALTER TABLE 'l9_quotes'
+ALTER TABLE `l9_quotes`
   ADD PRIMARY KEY (`quoteId`);
 
 --
@@ -108,12 +110,12 @@ ALTER TABLE 'l9_quotes'
 --
 -- AUTO_INCREMENT for table `l9_author`
 --
-ALTER TABLE 'l9_author'
+ALTER TABLE `l9_author`
   MODIFY `authorId` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `l9_quotes`
 --
-ALTER TABLE 'l9_quotes'
+ALTER TABLE `l9_quotes`
   MODIFY `quoteId` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;

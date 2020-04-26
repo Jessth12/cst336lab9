@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 
 if(process.env.JAWSDB_URL){
     var connection = mysql.createConnection(process.env.JAWSDB_URL)
+    connection.connect();
 }else {
     const connection = mysql.createConnection({
         host: 'localhost',
@@ -18,8 +19,9 @@ if(process.env.JAWSDB_URL){
         password: 'password336',
         database: 'quotes_db'
     });
+    connection.connect();
 }
-connection.connect();
+
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
