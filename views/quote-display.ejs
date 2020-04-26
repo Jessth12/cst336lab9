@@ -1,0 +1,26 @@
+<%- include ('templates/header'); -%>
+
+<div class='container'>
+    <div class='jumbotron'>
+        <h1 style='text-align:center;'> FOUND AUTHOR </h1>
+        <div class='row'>
+            <div class='col-sm-4'></div>
+            <button class='col-sm-4 btn btn-info btn-block'onclick='location.href="/search";'>Search Again</button>
+            <div class='col-sm-4'></div>
+        </div>
+    </div>
+    
+    <h3>Query = <%=query%></h3>
+    <ul>
+        <%quotes.forEach(function(q){%>
+            <li style="padding: 1rem;">
+                <button ref="<%=q.authorId%>" style="display: inline-block;">
+                    <%=q.firstName%> <%=q.lastName%>
+                </button>
+                <span style="word-wrap: break-word; word-break: break-all;"><%=q.quote%></span>
+            </li>
+        <%});%>
+    </ul>
+</div>
+
+<%- include ('templates/footer'); -%>

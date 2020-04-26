@@ -36,11 +36,80 @@ app.get('/', function(req, res){
     res.render('home');
 });
 
+app.get('/search', function(req, res) {
+    res.render('quote-home');
+});
+
+app.get('/quotes', function(req, res) {
+
+    if (req.query.type == "name") {
+        let name = req.query.query;
+        let splits = name.split(" ");
+        if (splits.length > 1) {
+            let first = splits[0];
+            let last = splits[1];
+
+            let stmt = `SELECT * FROM l9_author JOIN l9_quotes 
+            ON l9_author.authorId = l9_quotes.authorId
+            WHERE firstName LIKE '%${first}%' AND
+            lastName LIKE '%${last}%';`
+
+            console.log(stmt);
+
+            connection.query(stmt, function(error, found) {
+                if(error) throw error;
+                console.log(found);
+                res.render('quote-display', {
+                    "quotes": found,
+                    "query": "Search by Name " + req.query.query
+                });
+            });
+        } else {
+            let first = splits[0];
+
+            let stmt = `SELECT * FROM l9_author JOIN l9_quotes 
+            ON l9_author.authorId = l9_quotes.authorId
+            WHERE firstName LIKE '%${first}%';`
+
+            console.log(stmt);
+
+            connection.query(stmt, function(error, found) {
+                
+                console.log(found);
+                res.render('quote-display', {
+                    "quotes": found,
+                    "query": "Search by Name " + req.query.query
+                });
+            });
+        }
+    }
+
+    if (req.query.type == "key") {
+        let stmt = `SELECT * FROM l9_author JOIN l9_quotes 
+        ON l9_author.authorId = l9_quotes.authorId
+        WHERE quote LIKE '%${req.query.query}%';`
+
+        console.log(stmt);
+
+        connection.query(stmt, function(error, found) {
+            if(error) throw error;
+            console.log(found);
+            res.render('quote-display', {
+                "quotes": found,
+                "query": "Search by Keyword " + req.query.query
+            });
+        });
+    }
+    
+
+});
+
 /* The handler for the /author route */
 app.get('/author', function(req, res){
+
     var stmt = 'select * from l9_author where firstName=\'' 
                 + req.query.firstname + '\' and lastName=\'' 
-                + req.query.lastname + '\';'
+                + req.query.lastname + '\' and sex=\'' + req.query.gender + '\';'
 
     console.log(stmt);
 	connection.query(stmt, function(error, found){
