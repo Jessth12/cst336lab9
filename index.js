@@ -231,6 +231,7 @@ function addAuthor(first, last, dob, dod, gender, profession, country) {
 
 app.get('/admin', isAuthenticated, async function (req, res) {
     let authors = await getAuthors();
+    console.log(authors);
     res.render('lab10/admin', {
         "authors": authors
     });
