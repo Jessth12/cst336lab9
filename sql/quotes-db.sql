@@ -36,7 +36,7 @@ INSERT INTO `l9_author` (`authorId`, `firstName`, `lastName`, `dob`, `dod`, `sex
 
 -- --------------------------------------------------------
 
---
+-- 
 -- Table structure for table `l9_quotes`
 --
 

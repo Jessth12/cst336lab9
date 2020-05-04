@@ -1,0 +1,43 @@
+Welcome to admin page!
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+    }
+    button{
+        display: block;
+    }
+
+</style>
+<script>
+
+</script>
+
+<button onclick='location.href="/logout";'>Logout</button>
+<button onclick='location.href="/add_author";'>Create Author</button>
+
+<table>
+    <tr>
+        <th>Author Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <% for(var i = 0; i < authors.length; i++) { %>
+    <tr>
+        <td><%= authors[i].firstName %> <%= authors[i].lastName %></td>
+        <td><button class="edit" name="">Edit</button></td>
+        <td><button>Delete</button></td>
+    </tr>
+    <% } %>
+
+</table>
