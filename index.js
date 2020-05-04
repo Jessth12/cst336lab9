@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var app = express();
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
